@@ -1,0 +1,17 @@
+{
+  "name": "web_application",
+  "version": "1.0.0",
+  "description": "build web application with react and express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd my-app && npm start",
+    "server": "cd my-server && nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "author": "Lawyerd",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.1.0"
+  }
+}

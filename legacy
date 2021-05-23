@@ -1,0 +1,59 @@
+<div className="card-title">
+                    <h1>Create</h1>
+                  </div>
+
+                  <div
+                    className="input-group flex-nowrap"
+                    style={{ marginBottom: "10px" }}
+                  >
+                    <span className="input-group-text" id="addon-wrapping">
+                      phone
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="010-1234-5321"
+                    ></input>
+                  </div>
+                  <div
+                    className="input-group flex-nowrap"
+                    style={{ marginBottom: "10px" }}
+                  >
+                    <span className="input-group-text" id="addon-wrapping">
+                      email
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="natfly@example.com"
+                    ></input>
+                  </div>
+                  <div
+                    className="input-group flex-nowrap "
+                    style={{ marginBottom: "10px" }}
+                  >
+                    <span className="input-group-text" id="addon-wrapping">
+                      country
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Korea"
+                    ></input>
+                  </div>
+                  <div
+                    className="input-group flex-nowrap"
+                    style={{ marginBottom: "30px" }}
+                  >
+                    <span className="input-group-text" id="addon-wrapping">
+                      birth
+                    </span>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="1997-09-23"
+                    ></input>
+                  </div>
+                  <button type="submit" className="btn btn-dark">
+                    Submit
+                  </button>
