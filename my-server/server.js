@@ -1,4 +1,4 @@
-import { get_data, get_all, create, update } from "./my_sql.js";
+import { get_data, get_all, create, update, remove } from "./my_sql.js";
 import cors from "cors";
 import express from "express";
 import bodyParser from "body-parser";
@@ -18,6 +18,7 @@ app.get("/", index); // routing --> 사용자가 특정한 path로 들어올 때
 
 app.post("/create", create_user);
 app.post("/update/:pageID", update_user);
+app.post("/delete", delete_user);
 
 app.get("/pages", pages);
 
@@ -49,6 +50,11 @@ async function create_user(req, res) {
 async function update_user(req, res) {
   console.log(req.body);
   await update(req.body);
+}
+
+async function delete_user(req, res) {
+  console.log(req.body);
+  await remove(req.body);
 }
 
 async function pages(req, res, next) {

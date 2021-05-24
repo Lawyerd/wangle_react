@@ -42,12 +42,21 @@ export async function create(data) {
 }
 
 export async function update(data) {
-  console.log(data);
   const id = data.id;
   delete data["id"];
   try {
     await connection.query(`Update user SET ? Where id =${id}`, data);
 
+    // insert data into example table
+  } catch (e) {
+    // console.log(e);
+  }
+}
+
+export async function remove(data) {
+  const id = data.id;
+  try {
+    await connection.query(`Delete From user Where id = ${id}`);
     // insert data into example table
   } catch (e) {
     // console.log(e);
