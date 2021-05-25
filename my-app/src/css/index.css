@@ -1,0 +1,37 @@
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+div {
+  /* background-color:black; */
+  /* color: aliceblue; */
+  font-family:'Apple_Text';  
+}
+
+h1{
+  font-family:'Apple_Display';
+}
+
+@font-face {
+  font-family: "Apple_Display";
+  src: url("../font/SF-Pro-Display-Medium.otf");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Apple_Text";
+  src: url("../font/SF-Pro-Text-Medium.otf");
+  font-style: normal;
+  font-weight: normal;
+}
