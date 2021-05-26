@@ -1,50 +1,30 @@
 import React from "react";
+import { Nav, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "../css/Navigation.css";
-import styled from "styled-components";
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  padding: 0px;
-  margin: 0px;
-  clear: both;
-  float: left;
-  color: #5f5f5f;
-  left: initial;
-  top: initial;
-  &:focus,
-  &:hover,
-  &:visited,
-  &:link,
-  &:active {
-    text-decoration: none;
-  }
-`;
+import "../css/Navigation.css";
 
 function navigation() {
   return (
-    <div className="">
-      <div
-        className="card position-fixed"
-        style={{ margin: "30px", display: "flex" }}
+    <>
+      <Card
+        style={{ position: "fixed", marginLeft: "20px", marginTop: "40px" }}
       >
-        <div
+        <Card.Body
           className="card-body text-center"
-          style={{ padding: "10px", margin: "0px" }}
+          style={{ padding: "0px", margin: "0px" }}
         >
-          <div className="navs m-10">
-            <StyledLink to="/" style={{ marginBottom: "10px" }}>
-              Home
-            </StyledLink>
-            <StyledLink to="/create" style={{ marginBottom: "10px" }}>
+          <Nav defaultActiveKey="/home" className="flex-column">
+            <Nav.Link as={Link} to="/create">
               Create
-            </StyledLink>
-
-            <StyledLink to="/about">About</StyledLink>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Nav.Link>
+            <Nav.Link eventKey="disabled" disabled>
+              Disabled
+            </Nav.Link>
+          </Nav>
+        </Card.Body>
+      </Card>
+    </>
   );
 }
 

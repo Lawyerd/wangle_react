@@ -43,3 +43,8 @@
   .navs {
     text-align: center;
   }
+
+  .nav-link {
+    display: block;
+    padding: 10rem, 10rem;
+}

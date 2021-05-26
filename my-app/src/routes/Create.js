@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
 
 import "../css/Create.css";
 import axios from "axios";
@@ -61,9 +62,9 @@ function Create() {
   }
 
   return (
-    <div className="detail">
-      <div className="card bg-light mb-3">
-        <div className="card-body">
+    <>
+      <Card>
+        <Card.Body>
           <form onSubmit={handleSubmit}>
             <div
               className="input-group flex-nowrap"
@@ -95,6 +96,7 @@ function Create() {
                 onChange={handleChange}
                 value={values.phone}
                 placeholder="010-1234-1234"
+                style={{ borderRadius: "5px" }}
               ></input>
             </div>
             <div
@@ -145,17 +147,17 @@ function Create() {
                 placeholder="2000-11-03"
               ></input>
             </div>
-            <button
+            <Button
               type="submit"
               className="btn btn-dark"
               disabled={submitting}
             >
               Create
-            </button>
+            </Button>
           </form>
-        </div>
-      </div>
-    </div>
+        </Card.Body>
+      </Card>
+    </>
   );
 }
 

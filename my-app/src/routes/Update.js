@@ -4,6 +4,7 @@ import axios from "axios";
 import "../css/Create.css";
 import validate from "../lib/validate.js";
 import isEmpty from "../lib/empty.js";
+import { Card, Button } from "react-bootstrap";
 
 function Update(props) {
   const [values, setValues] = useState({
@@ -85,8 +86,8 @@ function Update(props) {
 
   return (
     <div className="detail">
-      <div className="card bg-light mb-3">
-        <div className="card-body">
+      <Card>
+        <Card.Body>
           <form onSubmit={handleSubmit}>
             <div
               className="input-group flex-nowrap"
@@ -168,16 +169,16 @@ function Update(props) {
                 placeholder="2000-11-03"
               ></input>
             </div>
-            <button
+            <Button
               type="submit"
               className="btn btn-dark"
               disabled={submitting}
             >
               Update
-            </button>
+            </Button>
           </form>
-        </div>
-      </div>
+        </Card.Body>
+      </Card>
     </div>
   );
 }

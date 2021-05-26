@@ -1,17 +1,18 @@
 import React from "react";
 import "../css/About.css";
+import { Card } from "react-bootstrap";
 
 class About extends React.Component {
   render() {
     return (
-      <div className="detail">
-        <div className="card bg-light mb-3">
-          <div className="card-body">
-            <h5 className="card-title">Slowly But Steady</h5>
-            <p className="card-text">made by Lawyerd</p>
-          </div>
-        </div>
-      </div>
+      <>
+        <Card>
+          <Card.Body>
+            <Card.Title>Slowly But Steady</Card.Title>
+            <Card.Text>made by Lawyerd</Card.Text>
+          </Card.Body>
+        </Card>
+      </>
     );
   }
 }

@@ -1,20 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
 
 function card({ id, title, description }) {
   const page = id;
   return (
-    <div className="card bg-light mb-3">
-      <div className="card-body">
-        <h5 className="card-title">{title}</h5>
-        <p className="card-text">{description}</p>
+    <Card style={{ minWidth: "11rem" }}>
+      <Card.Body>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>{description}</Card.Text>
         <Link to={{ pathname: `/user/${id}`, state: { page } }}>
-          <button type="button" className="btn btn-dark">
-            Click!
-          </button>
+          <Button variant="dark">more</Button>
         </Link>
-      </div>
-    </div>
+      </Card.Body>
+    </Card>
   );
 }
 

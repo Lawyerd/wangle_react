@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
-
+import { Card, Button } from "react-bootstrap";
 import "../css/Detail.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -49,42 +49,45 @@ function Detail(params) {
   }
 
   return (
-    <div className="detail">
-      {isLoading ? (
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      ) : (
-        <div className="card bg-light mb-3">
-          <div className="card-body">
-            <h5 className="card-title">{values.name}</h5>
-            <p className="card-text">{values.phone}</p>
-            <p className="card-text">{values.email}</p>
-            <p className="card-text">{values.country}</p>
-            <p className="card-text">{values.birth}</p>
+    <>
+      <Card
+        style={{
+          justifyContent: "center",
+          minWidth: "11rem",
+        }}
+      >
+        {isLoading ? (
+          <div className="spinner-border" role="status"></div>
+        ) : (
+          <Card.Body>
+            <Card.Title>{values.name}</Card.Title>
+            <Card.Text>{values.phone}</Card.Text>
+            <Card.Text>{values.email}</Card.Text>
+            <Card.Text>{values.country}</Card.Text>
+            <Card.Text>{values.birth}</Card.Text>
 
-            <button
+            <Button
               type="button"
               onClick={handleClick}
               className="btn btn-dark"
               style={{ margin: "10px" }}
             >
               delete
-            </button>
+            </Button>
 
             <Link to={{ pathname: `/update/${values.id}`, state: { page } }}>
-              <button
+              <Button
                 type="button"
                 className="btn btn-dark"
                 style={{ margin: "10px" }}
               >
                 update
-              </button>
+              </Button>
             </Link>
-          </div>
-        </div>
-      )}
-    </div>
+          </Card.Body>
+        )}
+      </Card>
+    </>
   );
 }
 export default Detail;

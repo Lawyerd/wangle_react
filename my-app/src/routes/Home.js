@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "../css/Home.css";
 import Card from "../components/Card.js";
+import { Row, Container, Col } from "react-bootstrap";
+
 import axios from "axios";
 
 function Home() {
@@ -22,32 +24,32 @@ function Home() {
   }; // getMovies라는 함수 정의
 
   return (
-    <div className="Home">
-      <h1>Main</h1>
+    <>
+      <Container style={{ textAlign: "center" }}>
+        <h1>Main</h1>
+      </Container>
 
-      <div className="container">
+      <Container style={{ textAlign: "center" }}>
         <div className="mt-3">
           {isLoading ? (
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
+            <div className="spinner-border" role="status"></div>
           ) : (
-            <div className="row">
+            <Row>
               {users.map(user => (
-                <div className="col-4" key={String(user.id)}>
+                <Col md={4} key={String(user.id)}>
                   <Card
                     key={user.id}
                     id={user.id}
                     title={user.name}
                     description={user.phone}
                   />
-                </div>
+                </Col>
               ))}
-            </div>
+            </Row>
           )}
         </div>
-      </div>
-    </div>
+      </Container>
+    </>
   );
 }
 export default Home;
