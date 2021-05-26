@@ -62,103 +62,97 @@ function Create() {
 
   return (
     <div className="detail">
-      <div className="row">
-        <div className="col-2" />
-
-        <div className="col-8">
-          <div className="card bg-light mb-3">
-            <div className="card-body">
-              <form onSubmit={handleSubmit}>
-                <div
-                  className="input-group flex-nowrap"
-                  style={{ marginBottom: "10px" }}
-                >
-                  <span className="input-group-text" id="addon-wrapping">
-                    name
-                  </span>
-                  <input
-                    type="text"
-                    name="name"
-                    className="form-control"
-                    onChange={handleChange}
-                    value={values.name}
-                    placeholder="Username"
-                  ></input>
-                </div>
-                <div
-                  className="input-group flex-nowrap"
-                  style={{ marginBottom: "10px" }}
-                >
-                  <span className="input-group-text" id="addon-wrapping">
-                    phone
-                  </span>
-                  <input
-                    type="text"
-                    name="phone"
-                    className="form-control"
-                    onChange={handleChange}
-                    value={values.phone}
-                    placeholder="010-1234-1234"
-                  ></input>
-                </div>
-                <div
-                  className="input-group flex-nowrap"
-                  style={{ marginBottom: "10px" }}
-                >
-                  <span className="input-group-text" id="addon-wrapping">
-                    email
-                  </span>
-                  <input
-                    type="text"
-                    name="email"
-                    className="form-control"
-                    onChange={handleChange}
-                    value={values.email}
-                    placeholder="jun126@example.com"
-                  ></input>
-                </div>
-                <div
-                  className="input-group flex-nowrap"
-                  style={{ marginBottom: "10px" }}
-                >
-                  <span className="input-group-text" id="addon-wrapping">
-                    country
-                  </span>
-                  <input
-                    type="text"
-                    name="country"
-                    className="form-control"
-                    onChange={handleChange}
-                    value={values.country}
-                    placeholder="Korea"
-                  ></input>
-                </div>
-                <div
-                  className="input-group flex-nowrap"
-                  style={{ marginBottom: "10px" }}
-                >
-                  <span className="input-group-text" id="addon-wrapping">
-                    birth
-                  </span>
-                  <input
-                    type="text"
-                    name="birth"
-                    className="form-control"
-                    onChange={handleChange}
-                    value={values.birth}
-                    placeholder="2000-11-03"
-                  ></input>
-                </div>
-                <button
-                  type="submit"
-                  className="btn btn-dark"
-                  disabled={submitting}
-                >
-                  Create
-                </button>
-              </form>
+      <div className="card bg-light mb-3">
+        <div className="card-body">
+          <form onSubmit={handleSubmit}>
+            <div
+              className="input-group flex-nowrap"
+              style={{ marginBottom: "10px" }}
+            >
+              <span className="input-group-text" id="addon-wrapping">
+                name
+              </span>
+              <input
+                type="text"
+                name="name"
+                className="form-control"
+                onChange={handleChange}
+                value={values.name}
+                placeholder="Username"
+              ></input>
             </div>
-          </div>
+            <div
+              className="input-group flex-nowrap"
+              style={{ marginBottom: "10px" }}
+            >
+              <span className="input-group-text" id="addon-wrapping">
+                phone
+              </span>
+              <input
+                type="text"
+                name="phone"
+                className="form-control"
+                onChange={handleChange}
+                value={values.phone}
+                placeholder="010-1234-1234"
+              ></input>
+            </div>
+            <div
+              className="input-group flex-nowrap"
+              style={{ marginBottom: "10px" }}
+            >
+              <span className="input-group-text" id="addon-wrapping">
+                email
+              </span>
+              <input
+                type="text"
+                name="email"
+                className="form-control"
+                onChange={handleChange}
+                value={values.email}
+                placeholder="jun126@example.com"
+              ></input>
+            </div>
+            <div
+              className="input-group flex-nowrap"
+              style={{ marginBottom: "10px" }}
+            >
+              <span className="input-group-text" id="addon-wrapping">
+                country
+              </span>
+              <input
+                type="text"
+                name="country"
+                className="form-control"
+                onChange={handleChange}
+                value={values.country}
+                placeholder="Korea"
+              ></input>
+            </div>
+            <div
+              className="input-group flex-nowrap"
+              style={{ marginBottom: "10px" }}
+            >
+              <span className="input-group-text" id="addon-wrapping">
+                birth
+              </span>
+              <input
+                type="text"
+                name="birth"
+                className="form-control"
+                onChange={handleChange}
+                value={values.birth}
+                placeholder="2000-11-03"
+              ></input>
+            </div>
+            <button
+              type="submit"
+              className="btn btn-dark"
+              disabled={submitting}
+            >
+              Create
+            </button>
+          </form>
         </div>
       </div>
     </div>

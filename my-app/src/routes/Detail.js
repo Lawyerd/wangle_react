@@ -42,7 +42,7 @@ function Detail(params) {
       get_data(page);
       setIsLoading(false);
     }
-  }, [page, isLoading, get_data]);
+  }, [page, get_data]);
 
   if (deleted) {
     return <Redirect to={"/"} />;
@@ -50,48 +50,40 @@ function Detail(params) {
 
   return (
     <div className="detail">
-      <div className="row">
-        <div className="col-2" />
-
-        <div className="col-8">
-          {isLoading ? (
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          ) : (
-            <div className="card bg-light mb-3">
-              <div className="card-body">
-                <h5 className="card-title">{values.name}</h5>
-                <p className="card-text">{values.phone}</p>
-                <p className="card-text">{values.email}</p>
-                <p className="card-text">{values.country}</p>
-                <p className="card-text">{values.birth}</p>
-
-                <button
-                  type="button"
-                  onClick={handleClick}
-                  className="btn btn-dark"
-                  style={{ margin: "10px" }}
-                >
-                  delete
-                </button>
-
-                <Link
-                  to={{ pathname: `/update/${values.id}`, state: { page } }}
-                >
-                  <button
-                    type="button"
-                    className="btn btn-dark"
-                    style={{ margin: "10px" }}
-                  >
-                    update
-                  </button>
-                </Link>
-              </div>
-            </div>
-          )}
+      {isLoading ? (
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
-      </div>
+      ) : (
+        <div className="card bg-light mb-3">
+          <div className="card-body">
+            <h5 className="card-title">{values.name}</h5>
+            <p className="card-text">{values.phone}</p>
+            <p className="card-text">{values.email}</p>
+            <p className="card-text">{values.country}</p>
+            <p className="card-text">{values.birth}</p>
+
+            <button
+              type="button"
+              onClick={handleClick}
+              className="btn btn-dark"
+              style={{ margin: "10px" }}
+            >
+              delete
+            </button>
+
+            <Link to={{ pathname: `/update/${values.id}`, state: { page } }}>
+              <button
+                type="button"
+                className="btn btn-dark"
+                style={{ margin: "10px" }}
+              >
+                update
+              </button>
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
