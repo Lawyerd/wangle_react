@@ -132,7 +132,6 @@ function Create() {
                 name="country"
                 onChange={handleChange}
               >
-                <option selected>Open this select menu</option>
                 {country_list.map(country => {
                   return (
                     <option value={country} key={country}>

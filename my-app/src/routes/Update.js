@@ -138,22 +138,28 @@ function Update(props) {
                 placeholder="jun126@example.com"
               ></input>
             </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">
+            <div className="input-group mb-3">
+              <div className="input-group-prepend">
+                <label
+                  className="input-group-text"
+                  htmlFor="inputGroupSelect01"
+                >
                   country
                 </label>
               </div>
               <select
-                class="custom-select"
+                className="custom-select"
                 id="inputGroupSelect01"
                 name="country"
                 value={values.country}
                 onChange={handleChange}
               >
-                <option selected>Open this select menu</option>
                 {country_list.map(country => {
-                  return <option value={country}>{country}</option>;
+                  return (
+                    <option key={country} value={country}>
+                      {country}
+                    </option>
+                  );
                 })}
               </select>
             </div>

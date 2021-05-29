@@ -15,7 +15,7 @@ function navigation() {
           style={{ padding: "0px", margin: "0px" }}
         >
           <Nav defaultActiveKey="/home" className="flex-column">
-            <Nav.Link as={Link} to="/create">
+            <Nav.Link as={Link} to="/create" disabled={false}>
               Create
             </Nav.Link>
             <Nav.Link eventKey="disabled" disabled>
