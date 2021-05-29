@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "../css/Home.css";
-import Card from "../components/Card.js";
-import { Row, Container, Col, Spinner } from "react-bootstrap";
+import "../../../css/Home.css";
+import { Link } from "react-router-dom";
+
+import Card from "../../../components/Card.js";
+import { Row, Container, Col, Spinner, Button } from "react-bootstrap";
 
 import axios from "axios";
 
-function Home() {
+function User_list() {
   const [users, setUsers] = useState({
     name: "",
     phone: "",
@@ -26,7 +28,10 @@ function Home() {
   return (
     <>
       <Container style={{ textAlign: "center" }}>
-        <h1>Main</h1>
+        <h1>User</h1>
+        <Button as={Link} className="btn btn-dark" to="/admin/user/create">
+          Add New User
+        </Button>
       </Container>
 
       <Container style={{ textAlign: "center" }}>
@@ -52,4 +57,4 @@ function Home() {
     </>
   );
 }
-export default Home;
+export default User_list;

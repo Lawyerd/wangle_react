@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import { Card, Button, Spinner } from "react-bootstrap";
-import "../css/Detail.css";
+import "../../../css/Detail.css";
+
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-function Detail(params) {
+function User_detail(params) {
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [values, setValues] = useState({
@@ -45,7 +46,11 @@ function Detail(params) {
   }, [page, get_data]);
 
   if (deleted) {
-    return <Redirect to={"/"} />;
+    return <Redirect to={"/admin/user"} />;
+  }
+
+  if (params.match.params.id === "create") {
+    return <></>;
   }
 
   return (
@@ -75,7 +80,12 @@ function Detail(params) {
               delete
             </Button>
 
-            <Link to={{ pathname: `/update/${values.id}`, state: { page } }}>
+            <Link
+              to={{
+                pathname: `/admin/user/update/${values.id}`,
+                state: { page },
+              }}
+            >
               <Button
                 type="button"
                 className="btn btn-dark"
@@ -90,4 +100,4 @@ function Detail(params) {
     </>
   );
 }
-export default Detail;
+export default User_detail;

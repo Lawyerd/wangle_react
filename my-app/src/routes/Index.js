@@ -2,14 +2,13 @@ import React from "react";
 import "../css/About.css";
 import { Card } from "react-bootstrap";
 
-class About extends React.Component {
+class Index extends React.Component {
   render() {
     return (
       <>
         <Card style={{ width: "18rem" }}>
           <Card.Body>
-            <Card.Title>Slowly But Steady</Card.Title>
-            <Card.Text>made by Lawyerd</Card.Text>
+            <Card.Title>Index</Card.Title>
           </Card.Body>
         </Card>
       </>
@@ -17,4 +16,4 @@ class About extends React.Component {
   }
 }
 
-export default About;
+export default Index;

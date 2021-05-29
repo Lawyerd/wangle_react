@@ -2,13 +2,15 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 
-import "../css/Create.css";
+import "../../../css/Create.css";
 import axios from "axios";
-import validate from "../lib/validate.js";
-import isEmpty from "../lib/empty.js";
-import country_list from "../lib/country.js";
+import validate from "../../../lib/validate.js";
+import autoHypen from "../../../lib/autoHypen";
 
-function Create() {
+import isEmpty from "../../../lib/empty.js";
+import country_list from "../../../lib/country.js";
+
+function User_create() {
   const [values, setValues] = useState({
     name: "",
     phone: "",
@@ -24,10 +26,17 @@ function Create() {
   const handleChange = event => {
     const { name } = event.target;
     var { value } = event.target;
+    setValues({ ...values, [name]: value });
+
     if (name === "country") {
       value = event.target.options[event.target.selectedIndex].value;
+
+      setValues({ ...values, [name]: value });
     }
-    setValues({ ...values, [name]: value });
+    if (name === "phone") {
+      const hped_phone = autoHypen(value);
+      setValues({ ...values, [name]: hped_phone });
+    }
   };
 
   const handleSubmit = async event => {
@@ -63,7 +72,7 @@ function Create() {
   }, [submitting, post_data, errors]);
 
   if (success) {
-    return <Redirect to="../" />;
+    return <Redirect to="../user" />;
   }
 
   return (
@@ -101,6 +110,7 @@ function Create() {
                 onChange={handleChange}
                 value={values.phone}
                 placeholder="010-1234-1234"
+                maxLength="13"
                 style={{ borderRadius: "5px" }}
               ></input>
             </div>
@@ -120,14 +130,17 @@ function Create() {
                 placeholder="jun126@example.com"
               ></input>
             </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="inputGroupSelect01">
+            <div className="input-group mb-3">
+              <div className="input-group-prepend">
+                <label
+                  className="input-group-text"
+                  htmlFor="inputGroupSelect01"
+                >
                   country
                 </label>
               </div>
               <select
-                class="custom-select"
+                className="custom-select"
                 id="inputGroupSelect01"
                 name="country"
                 onChange={handleChange}
@@ -150,12 +163,11 @@ function Create() {
                 birth
               </span>
               <input
-                type="text"
+                type="date"
                 name="birth"
                 className="form-control"
                 onChange={handleChange}
                 value={values.birth}
-                placeholder="2000-11-03"
               ></input>
             </div>
 
@@ -173,4 +185,4 @@ function Create() {
   );
 }
 
-export default Create;
+export default User_create;

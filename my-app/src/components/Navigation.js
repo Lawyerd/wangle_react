@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 
 import "../css/Navigation.css";
 
-function navigation() {
+function navigation(props) {
+  const navigation_list = props.list;
+  const default_route = props.home;
+
   return (
     <>
       <Card
@@ -14,13 +17,19 @@ function navigation() {
           className="card-body text-center"
           style={{ padding: "0px", margin: "0px" }}
         >
-          <Nav defaultActiveKey="/home" className="flex-column">
-            <Nav.Link as={Link} to="/create" disabled={false}>
-              Create
-            </Nav.Link>
-            <Nav.Link eventKey="disabled" disabled>
-              Disabled
-            </Nav.Link>
+          <Nav defaultActiveKey={default_route} className="flex-column">
+            {navigation_list.map(navigation => {
+              return (
+                <Nav.Link
+                  key={navigation.title}
+                  as={Link}
+                  to={navigation.link}
+                  disabled={navigation.disable}
+                >
+                  {navigation.title}
+                </Nav.Link>
+              );
+            })}
           </Nav>
         </Card.Body>
       </Card>
