@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Spinner } from "react-bootstrap";
 import "../css/Detail.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -57,7 +57,7 @@ function Detail(params) {
         }}
       >
         {isLoading ? (
-          <div className="spinner-border" role="status"></div>
+          <Spinner animation="border" role="status" />
         ) : (
           <Card.Body>
             <Card.Title>{values.name}</Card.Title>

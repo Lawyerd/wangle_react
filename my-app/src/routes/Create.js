@@ -6,6 +6,7 @@ import "../css/Create.css";
 import axios from "axios";
 import validate from "../lib/validate.js";
 import isEmpty from "../lib/empty.js";
+import country_list from "../lib/country.js";
 
 function Create() {
   const [values, setValues] = useState({
@@ -21,7 +22,11 @@ function Create() {
   const [submitting, setSubmitting] = useState(false);
 
   const handleChange = event => {
-    const { name, value } = event.target;
+    const { name } = event.target;
+    var { value } = event.target;
+    if (name === "country") {
+      value = event.target.options[event.target.selectedIndex].value;
+    }
     setValues({ ...values, [name]: value });
   };
 
@@ -115,22 +120,29 @@ function Create() {
                 placeholder="jun126@example.com"
               ></input>
             </div>
-            <div
-              className="input-group flex-nowrap"
-              style={{ marginBottom: "10px" }}
-            >
-              <span className="input-group-text" id="addon-wrapping">
-                country
-              </span>
-              <input
-                type="text"
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">
+                  country
+                </label>
+              </div>
+              <select
+                class="custom-select"
+                id="inputGroupSelect01"
                 name="country"
-                className="form-control"
                 onChange={handleChange}
-                value={values.country}
-                placeholder="Korea"
-              ></input>
+              >
+                <option selected>Open this select menu</option>
+                {country_list.map(country => {
+                  return (
+                    <option value={country} key={country}>
+                      {country}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
+
             <div
               className="input-group flex-nowrap"
               style={{ marginBottom: "10px" }}
@@ -147,6 +159,7 @@ function Create() {
                 placeholder="2000-11-03"
               ></input>
             </div>
+
             <Button
               type="submit"
               className="btn btn-dark"

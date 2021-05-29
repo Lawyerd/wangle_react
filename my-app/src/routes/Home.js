@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/Home.css";
 import Card from "../components/Card.js";
-import { Row, Container, Col } from "react-bootstrap";
+import { Row, Container, Col, Spinner } from "react-bootstrap";
 
 import axios from "axios";
 
@@ -32,7 +32,7 @@ function Home() {
       <Container style={{ textAlign: "center" }}>
         <div className="mt-3">
           {isLoading ? (
-            <div className="spinner-border" role="status"></div>
+            <Spinner animation="border" role="status" />
           ) : (
             <Row>
               {users.map(user => (
