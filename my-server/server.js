@@ -43,17 +43,14 @@ async function index(req, res) {
 }
 
 async function create_user(req, res) {
-  console.log(`create user id : ${req.body.id}`);
   await create(req.body);
 }
 
 async function update_user(req, res) {
-  console.log(`update user id : ${req.body.id}`);
   await update(req.body);
 }
 
 async function delete_user(req, res) {
-  console.log(`delete user id : ${req.body.id}`);
   await remove(req.body);
 }
 
@@ -63,15 +60,12 @@ async function pages(req, res, next) {
 }
 
 async function page(req, res, next) {
-  console.log(`get user id : ${req.params.pageID}`);
-  var id = req.params.pageID;
-  var int_id = parseInt(id);
-  int_id = Math.round(int_id);
-  var cata = await get_data((id = int_id));
-  if (isEmptyArr(cata)) {
+  const user_id = req.params.pageID;
+  const user = await get_data(user_id);
+  if (isEmptyArr(user)) {
     res.redirect("/");
   } else {
-    res.send(cata);
+    res.send(user);
   }
 }
 

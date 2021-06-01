@@ -9,33 +9,39 @@ const connection = mysql.createConnection({
 });
 const query = util.promisify(connection.query).bind(connection);
 
-export async function get_data(id) {
+export async function get_data(user_id) {
   let rows = [];
   try {
-    rows = await query(`select * from user  where id = ${id}`);
+    rows = await query(`select * from user  where id = ${user_id}`);
+    console.log(`Get ${user_id} user's detail from user DB`);
+    console.log(rows);
+
+    return rows;
     // connection.end();
     // console.log(rows);
   } catch (err) {
     console.log(err);
+    return undefined;
   }
-  return rows;
 }
 
 export async function get_all() {
   let rows = [];
   try {
     rows = await query(`select * from user`);
+    console.log("Get all users");
+    return rows;
   } catch (err) {
     console.log(err);
+    return undefined;
   }
-  return rows;
 }
 
 export async function create(data) {
-  console.log(data.name);
   try {
     // insert data into example table
     await connection.query("INSERT INTO user SET ?", data);
+    console.log(`Create new user : ${data.name} from user DB`);
   } catch (e) {
     // console.log(e);
   }
@@ -46,7 +52,7 @@ export async function update(data) {
   delete data["id"];
   try {
     await connection.query(`Update user SET ? Where id =${id}`, data);
-
+    console.log(`Update ${id} : ${data.name} from user DB`);
     // insert data into example table
   } catch (e) {
     // console.log(e);
@@ -57,6 +63,7 @@ export async function remove(data) {
   const id = data.id;
   try {
     await connection.query(`Delete From user Where id = ${id}`);
+    console.log(`Delete ${id} : ${data.name} from user DB`);
     // insert data into example table
   } catch (e) {
     // console.log(e);

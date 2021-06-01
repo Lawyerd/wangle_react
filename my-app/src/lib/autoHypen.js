@@ -23,8 +23,6 @@ function autoHypen(str) {
     tmp += str.substr(7);
     return tmp;
   }
-
-  return str;
 }
 
 export default autoHypen;
