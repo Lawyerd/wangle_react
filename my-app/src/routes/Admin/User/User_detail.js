@@ -2,9 +2,10 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import { Card, Button, Spinner } from "react-bootstrap";
 import "../../../css/Detail.css";
-
 import { Link } from "react-router-dom";
 import axios from "axios";
+const base_url =
+  "http://ec2-13-124-149-215.ap-northeast-2.compute.amazonaws.com:9000";
 
 function User_detail(params) {
   const [page, setPage] = useState(0);
@@ -19,7 +20,7 @@ function User_detail(params) {
   });
   const [deleted, setDeleted] = useState(false);
   const get_data = useCallback(async () => {
-    const user_data = await axios.get(`http://localhost:2400/${page}`);
+    const user_data = await axios.get(base_url + `/${page}`);
     const user = user_data.data[0];
     setValues(user);
   }, [page]);
@@ -27,7 +28,7 @@ function User_detail(params) {
     if (window.confirm(`Delete ${values.name}?`)) {
       axios({
         method: "post",
-        url: "http://localhost:2400/delete",
+        url: base_url + "/delete",
         data: { id: values.id },
       });
       setDeleted(true);

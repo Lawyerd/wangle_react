@@ -2,13 +2,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import "../../../css/Create.css";
-
 import validate from "../../../lib/validate.js";
 import autoHypen from "../../../lib/autoHypen";
-
 import isEmpty from "../../../lib/empty.js";
 import { Card, Button } from "react-bootstrap";
 import country_list from "../../../lib/country.js";
+const base_url =
+  "http://ec2-13-124-149-215.ap-northeast-2.compute.amazonaws.com:9000";
 
 function User_update(props) {
   const [values, setValues] = useState({
@@ -39,7 +39,7 @@ function User_update(props) {
     }
   };
   const get_data = useCallback(async page => {
-    const res_data = await axios.get(`http://localhost:2400/${page}`);
+    const res_data = await axios.get(base_url + `/${page}`);
     const data = res_data.data[0];
     console.log(res_data);
 
@@ -51,7 +51,7 @@ function User_update(props) {
   const update_data = useCallback(async () => {
     await axios({
       method: "post",
-      url: `http://localhost:2400/update/${values.id}`,
+      url: base_url + `/update/${values.id}`,
       data: values,
     });
   });

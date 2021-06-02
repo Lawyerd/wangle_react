@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Redirect } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
-
 import "../../../css/Create.css";
 import axios from "axios";
 import validate from "../../../lib/validate.js";
 import autoHypen from "../../../lib/autoHypen";
-
 import isEmpty from "../../../lib/empty.js";
 import country_list from "../../../lib/country.js";
+const base_url =
+  "http://ec2-13-124-149-215.ap-northeast-2.compute.amazonaws.com:9000";
 
 function User_create() {
   const [values, setValues] = useState({
@@ -49,7 +49,7 @@ function User_create() {
   const post_data = useCallback(() => {
     axios({
       method: "post",
-      url: "http://localhost:2400/create",
+      url: base_url + "/create",
       data: values,
     });
   }, [values]);

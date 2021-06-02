@@ -1,15 +1,17 @@
-import mysql from "mysql";
-import util from "util";
+var mysql = require("mysql");
+var util = require("util");
 
 const connection = mysql.createConnection({
   host: "localhost",
   user: "root",
+
   password: "jim1292",
   database: "new_schema",
 });
 const query = util.promisify(connection.query).bind(connection);
+var my_sql = {};
 
-export async function get_data(user_id) {
+my_sql.get_data = async function (user_id) {
   let rows = [];
   try {
     rows = await query(`select * from user  where id = ${user_id}`);
@@ -23,9 +25,9 @@ export async function get_data(user_id) {
     console.log(err);
     return undefined;
   }
-}
+};
 
-export async function get_all() {
+my_sql.get_all = async function () {
   let rows = [];
   try {
     rows = await query(`select * from user`);
@@ -35,9 +37,9 @@ export async function get_all() {
     console.log(err);
     return undefined;
   }
-}
+};
 
-export async function create(data) {
+my_sql.create = async function (data) {
   try {
     // insert data into example table
     await connection.query("INSERT INTO user SET ?", data);
@@ -45,9 +47,9 @@ export async function create(data) {
   } catch (e) {
     // console.log(e);
   }
-}
+};
 
-export async function update(data) {
+my_sql.update = async function (data) {
   const id = data.id;
   delete data["id"];
   try {
@@ -57,9 +59,9 @@ export async function update(data) {
   } catch (e) {
     // console.log(e);
   }
-}
+};
 
-export async function remove(data) {
+my_sql.remove = async function (data) {
   const id = data.id;
   try {
     await connection.query(`Delete From user Where id = ${id}`);
@@ -68,4 +70,6 @@ export async function remove(data) {
   } catch (e) {
     // console.log(e);
   }
-}
+};
+
+exports.my_sql = my_sql;

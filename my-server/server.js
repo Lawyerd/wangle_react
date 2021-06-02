@@ -1,7 +1,9 @@
-import { get_data, get_all, create, update, remove } from "./my_sql.js";
-import cors from "cors";
-import express from "express";
-import bodyParser from "body-parser";
+var container = require("./my_sql.js");
+var mysql = container.my_sql;
+
+var cors = require("cors");
+var express = require("express");
+var bodyParser = require("body-parser");
 
 const app = express(); // app에 application이라는 객체가 담긴다.
 
@@ -33,35 +35,38 @@ app.use(function (req, res, next) {
   res.status(404).send("Sorry cant find that!");
 });
 
-app.listen(2400, () => {
+app.listen(9000, () => {
   // listen이라는 method가 실행될 때, 웹 서버가 실행되면서 3000번 port에 listening하게 되고, listening에 성공하면 콜백함수가 실행된다.
-  console.log(`Example app listening at http://localhost:2400`);
+  console.log(`Example app listening at http://localhost:9000`);
 });
 
 async function index(req, res) {
+  console.log(mysql);
+
   res.send("Main");
 }
 
 async function create_user(req, res) {
-  await create(req.body);
+  await mysql.create(req.body);
 }
 
 async function update_user(req, res) {
-  await update(req.body);
+  await mysql.update(req.body);
 }
 
 async function delete_user(req, res) {
-  await remove(req.body);
+  await mysql.remove(req.body);
 }
 
 async function pages(req, res, next) {
-  var pages = await get_all();
+  var pages = await mysql.get_all();
   res.send(pages);
 }
 
 async function page(req, res, next) {
   const user_id = req.params.pageID;
-  const user = await get_data(user_id);
+  console.log("page");
+  const user = await mysql.get_data(user_id);
   if (isEmptyArr(user)) {
     res.redirect("/");
   } else {
