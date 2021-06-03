@@ -7,6 +7,7 @@ import "../css/Navigation.css";
 function navigation(props) {
   const navigation_list = props.list;
   const default_route = props.home;
+  console.log(navigation_list);
 
   return (
     <>

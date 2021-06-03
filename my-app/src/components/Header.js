@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 import "../css/Navigation.css";
+import LogoutButton from "./Login/LogoutButton.js";
 
-function Header() {
+function Header({ authenticated, setUser }) {
+  const logout = () => setUser(null);
+
   return (
     <>
       <Navbar bg="dark" variant="dark">
@@ -19,10 +22,13 @@ function Header() {
             About
           </Nav.Link>
         </Nav>
-        {/* <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-info">Search</Button>
-        </Form> */}
+        {authenticated ? (
+          <LogoutButton logout={logout} />
+        ) : (
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
+        )}
       </Navbar>
     </>
   );

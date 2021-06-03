@@ -92,7 +92,7 @@ function User_update(props) {
   }
 
   return (
-    <div className="detail">
+    <>
       <Card>
         <Card.Body>
           <form onSubmit={handleSubmit}>
@@ -196,7 +196,7 @@ function User_update(props) {
           </form>
         </Card.Body>
       </Card>
-    </div>
+    </>
   );
 }
 export default User_update;
