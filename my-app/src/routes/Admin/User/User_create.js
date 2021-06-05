@@ -1,18 +1,20 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import "../../../css/Create.css";
 import axios from "axios";
 import validate from "../../../lib/validate.js";
-import autoHypen from "../../../lib/autoHypen";
 import isEmpty from "../../../lib/empty.js";
-import country_list from "../../../lib/country.js";
-const base_url =
-  "http://ec2-13-124-149-215.ap-northeast-2.compute.amazonaws.com:9000";
+import InputSet from "../../../components/InputSet.js";
+import SelectSet from "../../../components/SelectSet.js";
+import base_url from "../../../data/base_url.js";
 
 function User_create() {
   const [values, setValues] = useState({
     name: "",
+    password: "",
+    authority: "user",
+    salt: "salt_key",
     phone: "",
     email: "",
     country: "",
@@ -23,22 +25,6 @@ function User_create() {
 
   const [submitting, setSubmitting] = useState(false);
 
-  const handleChange = event => {
-    const { name } = event.target;
-    var { value } = event.target;
-    setValues({ ...values, [name]: value });
-
-    if (name === "country") {
-      value = event.target.options[event.target.selectedIndex].value;
-
-      setValues({ ...values, [name]: value });
-    }
-    if (name === "phone") {
-      const hped_phone = autoHypen(value);
-      setValues({ ...values, [name]: hped_phone });
-    }
-  };
-
   const handleSubmit = async event => {
     event.preventDefault();
     setSubmitting(true);
@@ -46,18 +32,15 @@ function User_create() {
     await new Promise(r => setTimeout(r, 1000));
   };
 
-  const post_data = useCallback(() => {
-    axios({
-      method: "post",
-      url: base_url + "/create",
-      data: values,
-    });
-  }, [values]);
-
   useEffect(() => {
+    const post_data = () => {
+      axios({
+        method: "post",
+        url: base_url + "/create",
+        data: values,
+      });
+    };
     if (submitting) {
-      console.log(errors);
-      console.log(isEmpty(errors));
       if (isEmpty(errors)) {
         setSubmitting(false);
         alert("Submited!");
@@ -69,7 +52,7 @@ function User_create() {
         setSubmitting(false);
       }
     }
-  }, [submitting, post_data, errors]);
+  }, [submitting, errors, values]);
 
   if (success) {
     return <Redirect to="../user" />;
@@ -80,96 +63,56 @@ function User_create() {
       <Card>
         <Card.Body>
           <form onSubmit={handleSubmit}>
-            <div
-              className="input-group flex-nowrap"
-              style={{ marginBottom: "10px" }}
-            >
-              <span className="input-group-text" id="addon-wrapping">
-                name
-              </span>
-              <input
-                type="text"
-                name="name"
-                className="form-control"
-                onChange={handleChange}
-                value={values.name}
-                placeholder="Username"
-              ></input>
-            </div>
-            <div
-              className="input-group flex-nowrap"
-              style={{ marginBottom: "10px" }}
-            >
-              <span className="input-group-text" id="addon-wrapping">
-                phone
-              </span>
-              <input
-                type="text"
-                name="phone"
-                className="form-control"
-                onChange={handleChange}
-                value={values.phone}
-                placeholder="010-1234-1234"
-                maxLength="13"
-                style={{ borderRadius: "5px" }}
-              ></input>
-            </div>
-            <div
-              className="input-group flex-nowrap"
-              style={{ marginBottom: "10px" }}
-            >
-              <span className="input-group-text" id="addon-wrapping">
-                email
-              </span>
-              <input
-                type="text"
-                name="email"
-                className="form-control"
-                onChange={handleChange}
-                value={values.email}
-                placeholder="jun126@example.com"
-              ></input>
-            </div>
-            <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <label
-                  className="input-group-text"
-                  htmlFor="inputGroupSelect01"
-                >
-                  country
-                </label>
-              </div>
-              <select
-                className="custom-select"
-                id="inputGroupSelect01"
-                name="country"
-                onChange={handleChange}
-              >
-                {country_list.map(country => {
-                  return (
-                    <option value={country} key={country}>
-                      {country}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
+            <InputSet
+              input_name="name"
+              values={values}
+              setValues={setValues}
+              placeholder="Jane Doe"
+              className="form-control"
+              type="text"
+            ></InputSet>
 
-            <div
-              className="input-group flex-nowrap"
-              style={{ marginBottom: "10px" }}
-            >
-              <span className="input-group-text" id="addon-wrapping">
-                birth
-              </span>
-              <input
-                type="date"
-                name="birth"
-                className="form-control"
-                onChange={handleChange}
-                value={values.birth}
-              ></input>
-            </div>
+            <InputSet
+              className="form-control"
+              input_name="email"
+              values={values}
+              setValues={setValues}
+              placeholder="jane_lane@example.com"
+              type="text"
+            ></InputSet>
+
+            <InputSet
+              className="form-control"
+              input_name="phone"
+              values={values}
+              setValues={setValues}
+              placeholder="010-0000-0000"
+              type="text"
+            ></InputSet>
+
+            <InputSet
+              className="form-control"
+              input_name="password"
+              values={values}
+              setValues={setValues}
+              placeholder=" "
+              type="text"
+            ></InputSet>
+
+            <SelectSet
+              className="form-control"
+              input_name="country"
+              values={values}
+              setValues={setValues}
+            ></SelectSet>
+
+            <InputSet
+              className="form-control"
+              input_name="birth"
+              values={values}
+              setValues={setValues}
+              type="date"
+            ></InputSet>
 
             <Button
               type="submit"

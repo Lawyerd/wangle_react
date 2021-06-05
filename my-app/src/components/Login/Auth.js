@@ -1,13 +1,17 @@
-const users = [
-  { email: "kim@test.com", password: "123", name: "Kim" },
-  { email: "lee@test.com", password: "456", name: "Lee" },
-  { email: "park@test.com", password: "789", name: "Park" },
-];
+import axios from "axios";
+import base_url from "../../data/base_url.js";
 
 export function signIn({ email, password }) {
-  const user = users.find(
-    user => user.email === email && user.password === password
-  );
-  if (user === undefined) throw new Error();
-  return user;
+  const update_data = async ({ email, password }) => {
+    console.log(email);
+    await axios({
+      method: "post",
+      url: base_url + `/login`,
+      data: email,
+    });
+  };
+  update_data({ email, password });
+  // throw new Error();
+  // if (user === undefined) throw new Error();
+  // return user;
 }

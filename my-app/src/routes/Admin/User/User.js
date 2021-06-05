@@ -5,7 +5,7 @@ import Detail from "./User_detail.js";
 import Create from "./User_create.js";
 import Update from "./User_update.js";
 function User({ match }) {
-  console.log(match.path);
+  // console.log(match.path);
   return (
     <>
       <Switch>

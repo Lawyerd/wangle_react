@@ -1,12 +1,17 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 function LogoutButton({ logout, history }) {
   const handleClick = () => {
-    logout();
+    logout("user");
     history.push("/");
   };
-  return <button onClick={handleClick}>Logout</button>;
+  return (
+    <Button variant="secondary" onClick={handleClick}>
+      Logout
+    </Button>
+  );
 }
 
 export default withRouter(LogoutButton);

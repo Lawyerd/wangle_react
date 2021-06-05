@@ -7,8 +7,7 @@ import "tui-grid/dist/tui-grid.css";
 import Grid from "@toast-ui/react-grid";
 import { Container, Spinner, Button } from "react-bootstrap";
 import axios from "axios";
-const base_url =
-  "http://ec2-13-124-149-215.ap-northeast-2.compute.amazonaws.com:9000";
+import base_url from "../../../data/base_url.js";
 
 function User_list() {
   const [users, setUsers] = useState({
@@ -24,17 +23,17 @@ function User_list() {
     get_users();
   }, []);
   const get_users = async () => {
-    var data = await axios.get(base_url + "/pages");
+    var data = await axios.get(base_url + "/user/all");
     setUsers(data.data);
     setIsLoading(false);
   }; // getMovies라는 함수 정의
   const [next, setNext] = useState(-1);
 
   const handleClick = e => {
-    const clicked_cell = e.nativeEvent.target.innerText;
+    // const clicked_cell = e.nativeEvent.target.innerText;
     const row_number = e.rowKey;
-    console.log(clicked_cell);
-    console.log(row_number);
+    // console.log(clicked_cell);
+    // console.log(row_number);
     if (row_number !== undefined) {
       setNext(users[row_number].id);
     }

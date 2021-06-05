@@ -1,30 +1,58 @@
 var container = require("./my_sql.js");
 var mysql = container.my_sql;
-
 var cors = require("cors");
 var express = require("express");
 var bodyParser = require("body-parser");
-
-const app = express(); // app에 application이라는 객체가 담긴다.
-
-const options = {
+const session = require("express-session");
+const passport = require("passport");
+const passportConfig = require("./passport"); // passport/index.js
+const cors_options = {
   origin: "http://localhost:3000", // 접근 권한을 부여하는 도메인
   credentials: true, // 응답 헤더에 Access-Control-Allow-Credentials 추가
   optionsSuccessStatus: 200, // 응답 상태 200으로 설정
 };
 
-app.use(cors(options));
-app.use(cors());
+const app = express(); // app에 application이라는 객체가 담긴다.
+app.use(cors(cors_options));
 app.use(bodyParser.json());
+app.use(
+  // 기본적인 세션설정
+  session({
+    resave: false,
+    saveUninitialized: false,
+    secret: "pyh",
+    cookie: {
+      httpOnly: true,
+      secure: false,
+    },
+  })
+);
 app.get("/", index); // routing --> 사용자가 특정한 path로 들어올 때 길을 안내하는 역할
+app.use(passport.initialize()); // passport 구동
+app.use(passport.session()); // 세션 연결
+passportConfig(passport);
+app.post("/login", (req, res, next) => {
+  passport.authenticate("local", (authError, user, info) => {
+    // passport/localStrategy.js를 실행시킵니다.  (1)
+    console.log("user");
+
+    console.log(user);
+    return req.login(user, loginError => {
+      if (loginError) {
+        console.error(loginError);
+      }
+    });
+  })(req, res, next);
+
+  res.redirect("/success");
+});
 
 app.post("/create", create_user);
 app.post("/update/:pageID", update_user);
 app.post("/delete", delete_user);
+app.get("/user/all", pages);
 
-app.get("/pages", pages);
-
-app.get("/:pageID", page);
+app.get("/user/:pageID", page);
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);
@@ -41,8 +69,6 @@ app.listen(9000, () => {
 });
 
 async function index(req, res) {
-  console.log(mysql);
-
   res.send("Main");
 }
 
@@ -65,12 +91,14 @@ async function pages(req, res, next) {
 
 async function page(req, res, next) {
   const user_id = req.params.pageID;
-  console.log("page");
-  const user = await mysql.get_data(user_id);
-  if (isEmptyArr(user)) {
-    res.redirect("/");
-  } else {
-    res.send(user);
+  console.log(user_id);
+  if (user_id !== "favicon.ico") {
+    const user = await mysql.get_data(user_id);
+    if (isEmptyArr(user)) {
+      res.redirect("/");
+    } else {
+      res.send(user);
+    }
   }
 }
 

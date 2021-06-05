@@ -6,7 +6,6 @@ import User from "./User/User.js";
 import DashBoard from "./Admin_dashboard.js";
 
 function Admin({ match }) {
-  console.log(match.path);
   const navigation_list = [
     {
       title: "User",

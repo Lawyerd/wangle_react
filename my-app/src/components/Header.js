@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, Button } from "react-bootstrap";
 import "../css/Navigation.css";
 import LogoutButton from "./Login/LogoutButton.js";
+import { useCookies } from "react-cookie";
 
-function Header({ authenticated, setUser }) {
-  const logout = () => setUser(null);
+function Header() {
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
+  console.log("header");
+  console.log(cookies);
 
   return (
     <>
@@ -22,11 +25,15 @@ function Header({ authenticated, setUser }) {
             About
           </Nav.Link>
         </Nav>
-        {authenticated ? (
-          <LogoutButton logout={logout} />
+        {cookies.user !== undefined ? (
+          <LogoutButton logout={removeCookie} />
         ) : (
-          <Link to="/login">
-            <button>Login</button>
+          <Link
+            to={{
+              pathname: "/login",
+            }}
+          >
+            <Button variant="secondary">Login</Button>
           </Link>
         )}
       </Navbar>

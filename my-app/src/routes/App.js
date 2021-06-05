@@ -1,36 +1,33 @@
 import "../css/App.css";
-import { Link, Route, BrowserRouter, Switch } from "react-router-dom";
-import { signIn } from "../components/Login/Auth.js";
-import AuthRoute from "../components/Login/AuthRoute";
-import LoginForm from "../components/Login/LoginForm";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 
-import React, { useState } from "react";
+import AuthRoute from "../components/Login/AuthRoute";
+import React, { useState, useEffect } from "react";
 import Header from "../components/Header.js";
 import About from "./About.js";
 import Index from "./Index.js";
 import Login from "./Login.js";
+import { useCookies } from "react-cookie";
 
 import Admin from "./Admin/Admin.js";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const authenticated = user != null;
-  // const authenticated = true;
-
-  const login = ({ email, password }) => setUser(signIn({ email, password }));
+  const [cookies] = useCookies(["user"]);
+  console.log("app");
+  console.log(cookies);
 
   return (
     <>
       <BrowserRouter>
-        <Header authenticated={authenticated} setUser={setUser} />
-
+        <Header />
         <Switch>
           <Route exact path="/" component={Index} />
-          <AuthRoute
-            authenticated={authenticated}
+          {/* <AuthRoute
+            // authority={user.authority}
             path="/admin"
             component={Admin}
-          />
+          /> */}
+          <Route path="/admin" component={Admin} />
           {/* <Route path="/admin" component={Admin} /> */}
           <Route path="/about" component={About} />
           <Route path="/login" component={Login} />

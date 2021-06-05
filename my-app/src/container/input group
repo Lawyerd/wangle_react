@@ -1,0 +1,35 @@
+{/* <div
+              className="input-group flex-nowrap"
+              style={{ marginBottom: "10px" }}
+            >
+              <span className="input-group-text" id="addon-wrapping">
+                name
+              </span>
+              <input
+                type="text"
+                name="name"
+                className="form-control"
+                onChange={handleChange}
+                value={values.name}
+                placeholder="Username"
+              ></input>
+            </div> */}
+
+            {/* <div
+              className="input-group flex-nowrap"
+              style={{ marginBottom: "10px" }}
+            >
+              <span className="input-group-text" id="addon-wrapping">
+                phone
+              </span>
+              <input
+                type="text"
+                name="phone"
+                className="form-control"
+                onChange={handleChange}
+                value={values.phone}
+                placeholder="010-1234-1234"
+                maxLength="13"
+                style={{ borderRadius: "5px" }}
+              ></input>
+            </div> */}
