@@ -92,14 +92,11 @@ my_sql.remove = async function (data) {
 
 my_sql.email = async function (email) {
   try {
-    console.log(email);
-    // const target_user = await connection.query(
-    //   `Select name from user Where id = ${email}`
-    // );
-    console.log(`Get user whoes email is ${email} from user DB`);
+    console.log(`Searching Whose email = '${email}' from user DB`);
     // console.log(target_user);
-    const rows = await query(`select * from user  where id = ${email}`);
-    console.log(rows);
+    const target_user = await query(
+      `select * from user  where email = '${email}'`
+    );
     return target_user;
   } catch (e) {
     // console.log(e);

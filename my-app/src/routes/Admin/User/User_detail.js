@@ -28,7 +28,7 @@ function User_detail(params) {
     if (window.confirm(`Delete ${values.name}?`)) {
       axios({
         method: "post",
-        url: base_url + "/delete",
+        url: base_url + "/user/delete",
         data: { id: values.id },
       });
       setDeleted(true);

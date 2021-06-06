@@ -1,17 +1,31 @@
 import axios from "axios";
 import base_url from "../../data/base_url.js";
 
-export function signIn({ email, password }) {
-  const update_data = async ({ email, password }) => {
-    console.log(email);
-    await axios({
-      method: "post",
-      url: base_url + `/login`,
-      data: email,
+export async function signIn({ email, password }) {
+  let login_user = {};
+  await axios({
+    method: "post",
+    url: base_url + `/login`,
+    data: { email: email, password: password },
+  })
+    .then(function (response) {
+      const user = response.data;
+      console.log("response user");
+      if (user === "") {
+        throw new Error("no user!");
+      } else {
+        console.log("no Error");
+        login_user = user;
+      }
+    })
+    .catch(function (error) {
+      console.log("error");
+      console.log(error);
+      throw new Error();
     });
-  };
-  update_data({ email, password });
+
   // throw new Error();
   // if (user === undefined) throw new Error();
   // return user;
+  return login_user;
 }

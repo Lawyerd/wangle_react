@@ -43,7 +43,7 @@ function User_update(props) {
     const update_data = async () => {
       await axios({
         method: "post",
-        url: base_url + `/update/${values.id}`,
+        url: base_url + `/user/update/${values.id}`,
         data: values,
       });
     };

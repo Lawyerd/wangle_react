@@ -1,13 +1,21 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
-function AuthRoute({ authority, component: Component, render, ...rest }) {
+function AuthRoute({ component: Component, render, ...rest }) {
+  const [cookies] = useCookies(["user"]);
+  let auth = "";
+  if (cookies.user !== undefined) {
+    auth = cookies.user.authority;
+  }
+  console.log(auth);
+
   return (
     <>
       <Route
         {...rest}
         render={props =>
-          authority === "admin" ? (
+          auth === "admin" ? (
             <Component {...props} />
           ) : (
             <Redirect to={{ pathname: "/", state: { from: props.location } }} />

@@ -1,17 +1,9 @@
-import React, { useEffect } from "react";
-// import { useCookies } from "react-cookie";
+import React from "react";
 import "../css/About.css";
 import { Card } from "react-bootstrap";
 import { Row, Col, Container } from "react-bootstrap";
 
 function About() {
-  // const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-  // useEffect(() => {
-  //   if (cookies.user === undefined) {
-  //     setCookie("user", "hello");
-  //   }
-  // }, []);
-
   return (
     <Row>
       <Col md={2}></Col>
@@ -19,8 +11,14 @@ function About() {
         <Container>
           <Card style={({ width: "18rem" }, { justifyContent: "center" })}>
             <Card.Body>
-              <Card.Title>Slowly But Steady</Card.Title>
-              <Card.Text>made by Lawyerd</Card.Text>
+              <Card.Title>Tommorrow never comes</Card.Title>
+              <Card.Text>
+                <list>
+                  <ol>email validation</ol>
+                  <ol>user profile</ol>
+                  <ol>sign up</ol>
+                </list>
+              </Card.Text>
             </Card.Body>
           </Card>
         </Container>

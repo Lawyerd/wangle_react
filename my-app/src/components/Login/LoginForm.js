@@ -13,12 +13,16 @@ function LoginForm() {
   useEffect(() => {
     console.log("Login Form");
     console.log(cookies);
-  }, []);
+  });
 
-  const handleClick = () => {
+  const handleClick = async () => {
     try {
-      const user = signIn({ email, password });
+      const user = await signIn({ email, password });
+      console.log("form");
+      console.log(user);
       setCookie("user", user);
+      setEmail("");
+      setPassword("");
       setLogin(true);
       // setLogin(true);
     } catch (e) {

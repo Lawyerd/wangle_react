@@ -36,7 +36,7 @@ function User_create() {
     const post_data = () => {
       axios({
         method: "post",
-        url: base_url + "/create",
+        url: base_url + "/user/create",
         data: values,
       });
     };
