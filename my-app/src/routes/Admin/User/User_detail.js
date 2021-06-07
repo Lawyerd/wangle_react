@@ -9,6 +9,7 @@ import base_url from "../../../data/base_url.js";
 function User_detail(params) {
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
   const [values, setValues] = useState({
     id: "",
     name: "",

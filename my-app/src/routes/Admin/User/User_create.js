@@ -14,7 +14,6 @@ function User_create() {
     name: "",
     password: "",
     authority: "user",
-    salt: "salt_key",
     phone: "",
     email: "",
     country: "",

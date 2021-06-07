@@ -104,15 +104,6 @@ function User_update(props) {
               type="text"
             ></InputSet>
 
-            <InputSet
-              className="form-control"
-              input_name="password"
-              values={values}
-              setValues={setValues}
-              placeholder=" "
-              type="text"
-            ></InputSet>
-
             <SelectSet
               className="form-control"
               input_name="country"

@@ -12,13 +12,6 @@ function About() {
           <Card style={({ width: "18rem" }, { justifyContent: "center" })}>
             <Card.Body>
               <Card.Title>Tommorrow never comes</Card.Title>
-              <Card.Text>
-                <list>
-                  <ol>email validation</ol>
-                  <ol>user profile</ol>
-                  <ol>sign up</ol>
-                </list>
-              </Card.Text>
             </Card.Body>
           </Card>
         </Container>

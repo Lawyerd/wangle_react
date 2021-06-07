@@ -2,6 +2,7 @@ import React from "react";
 import "../css/About.css";
 import { Card } from "react-bootstrap";
 import { Row, Col, Container } from "react-bootstrap";
+import newyork from "../img/newyork.jpg";
 
 class Index extends React.Component {
   render() {
@@ -12,7 +13,11 @@ class Index extends React.Component {
           <Container>
             <Card style={({ width: "18rem" }, { justifyContent: "center" })}>
               <Card.Body>
-                <Card.Title>Index</Card.Title>
+                <img
+                  src={newyork}
+                  alt="newyork"
+                  style={{ width: "58rem" }}
+                ></img>
               </Card.Body>
             </Card>
           </Container>

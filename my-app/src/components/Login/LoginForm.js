@@ -13,7 +13,7 @@ function LoginForm() {
   useEffect(() => {
     console.log("Login Form");
     console.log(cookies);
-  });
+  }, [cookies]);
 
   const handleClick = async () => {
     try {
