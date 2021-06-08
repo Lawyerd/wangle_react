@@ -2,6 +2,7 @@ import React from "react";
 import "../css/About.css";
 import { Card } from "react-bootstrap";
 import { Row, Col, Container } from "react-bootstrap";
+import Location from "../components/Location";
 
 function About() {
   return (
@@ -11,7 +12,7 @@ function About() {
         <Container>
           <Card style={({ width: "18rem" }, { justifyContent: "center" })}>
             <Card.Body>
-              <Card.Title>Tommorrow never comes</Card.Title>
+              <Location></Location>
             </Card.Body>
           </Card>
         </Container>

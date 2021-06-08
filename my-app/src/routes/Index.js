@@ -3,27 +3,21 @@ import "../css/About.css";
 import { Card } from "react-bootstrap";
 import { Row, Col, Container } from "react-bootstrap";
 import newyork from "../img/newyork.jpg";
+import Clock from "react-live-clock";
+
+// import Clock from "../components/Clock.js";
 
 class Index extends React.Component {
   render() {
     return (
-      <Row>
-        <Col md={2}></Col>
-        <Col md={8}>
-          <Container>
-            <Card style={({ width: "18rem" }, { justifyContent: "center" })}>
-              <Card.Body>
-                <img
-                  src={newyork}
-                  alt="newyork"
-                  style={{ width: "58rem" }}
-                ></img>
-              </Card.Body>
-            </Card>
-          </Container>
-        </Col>
-        <Col md={2}></Col>
-      </Row>
+      <div className="clock_wrap">
+        <Clock
+          format={"HH:mm:ss"}
+          ticking={true}
+          timezone={"Asia/Seoul"}
+          interval={1000}
+        />
+      </div>
     );
   }
 }

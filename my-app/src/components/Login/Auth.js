@@ -5,7 +5,7 @@ export async function signIn({ email, password }) {
   let login_user = {};
   await axios({
     method: "post",
-    url: base_url + `/login`,
+    url: base_url + `/auth/local`,
     data: { email: email, password: password },
   })
     .then(function (response) {

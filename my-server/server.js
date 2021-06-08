@@ -4,6 +4,8 @@ var bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
 const passportConfig = require("./passport"); // passport/index.js
+const kakaoConfig = require("./passport/kakao_login"); // passport/index.js
+
 var login_router = require("./router/login");
 var user_router = require("./router/user");
 const cors_options = {
@@ -22,8 +24,9 @@ app.get("/", index); // routing --> 사용자가 특정한 path로 들어올 때
 app.use(passport.initialize()); // passport 구동
 app.use(passport.session()); // 세션 연결
 passportConfig();
+kakaoConfig();
 
-app.use("/login", login_router);
+app.use("/auth", login_router);
 app.use("/user", user_router);
 
 app.use(function (err, req, res, next) {

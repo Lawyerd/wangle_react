@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Row } from "react-bootstrap";
 import { signIn } from "./Auth.js";
 import { useCookies } from "react-cookie";
+import base_url from "../../data/base_url.js";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -73,7 +74,17 @@ function LoginForm() {
             style={{ borderRadius: "5px" }}
           ></input>
         </div>
-        <Button onClick={handleClick}>Login</Button>
+        <Row style={{ justifyContent: "center" }}>
+          <Button onClick={handleClick}>Login</Button>
+          <div>
+            <a href={base_url + "/auth/kakao"}>
+              <img
+                style={{ height: "40px" }}
+                src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+              />
+            </a>
+          </div>
+        </Row>
       </Card.Body>
     </Card>
   );

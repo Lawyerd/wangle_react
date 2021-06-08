@@ -7,6 +7,7 @@ import "tui-grid/dist/tui-grid.css";
 import Grid from "@toast-ui/react-grid";
 import { Container, Spinner, Button } from "react-bootstrap";
 import axios from "axios";
+import "tui-pagination/dist/tui-pagination.css";
 import base_url from "../../../data/base_url.js";
 
 function User_list() {
@@ -90,6 +91,10 @@ function User_list() {
             heightResizable={true}
             rowHeaders={["rowNum"]}
             onClick={handleClick}
+            pageOptions={{
+              useClient: true,
+              perPage: 5,
+            }}
           />
         </Container>
       ) : (
