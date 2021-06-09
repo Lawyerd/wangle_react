@@ -76,11 +76,13 @@ function LoginForm() {
         </div>
         <Row style={{ justifyContent: "center" }}>
           <Button onClick={handleClick}>Login</Button>
+
           <div>
             <a href={base_url + "/auth/kakao"}>
               <img
                 style={{ height: "40px" }}
                 src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+                alt="kakao_login"
               />
             </a>
           </div>

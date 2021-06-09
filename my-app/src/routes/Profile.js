@@ -30,6 +30,11 @@ function Profile() {
       <Col md={8}>
         <Card>
           <Card.Body>
+            <img
+              src={user.profile_image}
+              alt="profile_image"
+              style={{ height: "200px" }}
+            />
             <Card.Text>id : {user.id}</Card.Text>
             <Card.Text>authority : {user.authority}</Card.Text>
             <Card.Text>name : {user.name}</Card.Text>

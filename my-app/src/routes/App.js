@@ -8,6 +8,7 @@ import Index from "./Index.js";
 import Login from "./Login.js";
 import SignUp from "./SignUp.js";
 import Profile from "./Profile.js";
+import Oauth from "./Oauth.js";
 
 import Admin from "./Admin/Admin.js";
 
@@ -22,8 +23,10 @@ function App() {
           <Route path="/about" component={About} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
+          <Route path="/oauth" component={Oauth} />
+
           <AuthRoute
-            auth={["user", "admin"]}
+            auth={["user", "admin", "user_kakao"]}
             path="/profile"
             component={Profile}
           />

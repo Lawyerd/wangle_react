@@ -1,8 +1,6 @@
 import React from "react";
 import "../css/About.css";
-import { Card } from "react-bootstrap";
-import { Row, Col, Container } from "react-bootstrap";
-import newyork from "../img/newyork.jpg";
+// import newyork from "../img/newyork.jpg";
 import Clock from "react-live-clock";
 
 // import Clock from "../components/Clock.js";

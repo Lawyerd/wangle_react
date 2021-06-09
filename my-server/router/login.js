@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 const passport = require("passport");
+const axios = require("axios");
 
 router.post("/local", function (req, res, next) {
   passport.authenticate("local", function (err, user) {
@@ -25,13 +26,17 @@ router.get("/kakao", passport.authenticate("kakao"));
 router.get(
   "/kakao/callback",
   passport.authenticate("kakao", {
-    failureRedirect: "/",
+    failureRedirect: "http://localhost:3000/",
   }),
   (req, res) => {
-    res.send(res);
-    res.redirect("http://localhost:3000/");
-    // console.log(res);
-    // console.log(res.body);
+    // res.send(res);
+    console.log(req.user);
+    console.log("*****************");
+    // console.log(req.user);
+    // console.log(req.session);
+    res.cookie("kakao_user", req.user, { httpOnly: false });
+    // res.send(req.user);
+    res.redirect("http://localhost:3000/oauth");
   }
 );
 

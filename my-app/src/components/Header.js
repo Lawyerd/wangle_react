@@ -4,12 +4,17 @@ import { Navbar, Nav } from "react-bootstrap";
 import "../css/Navigation.css";
 import { useCookies } from "react-cookie";
 import logo from "../img/TIME_WHITE_.gif";
+import axios from "axios";
 
 function Header() {
   const [cookies, removeCookie] = useCookies(["user"]);
   console.log(cookies);
   const handleClick = () => {
     removeCookie("user");
+    // await axios({
+    //   method: "post",
+    //   url: "kapi.kakao.com",
+    // });
   };
   return (
     <>

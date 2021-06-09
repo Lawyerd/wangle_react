@@ -18,7 +18,16 @@ const app = express(); // app에 application이라는 객체가 담긴다.
 app.use(cors(cors_options));
 app.use(bodyParser.json());
 app.use(
-  session({ secret: "비밀코드", resave: true, saveUninitialized: false })
+  session({
+    secret: "비밀코드",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      secure: true,
+    },
+    name: "passport",
+  })
 ); // 세션 활성화
 app.get("/", index); // routing --> 사용자가 특정한 path로 들어올 때 길을 안내하는 역할
 app.use(passport.initialize()); // passport 구동
