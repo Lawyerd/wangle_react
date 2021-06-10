@@ -15,13 +15,14 @@ module.exports = () => {
       async (accessToken, refreshToken, profile, done) => {
         const profile_email = profile._json.kakao_account.email;
         const user = await mysql.email(profile_email);
-        console.log(user);
+        // console.log(user);
         if (!isEmptyArr(user)) {
           const sanitize_user = {
             id: user[0].id,
             authority: user[0].authority,
             name: user[0].name,
             email: user[0].email,
+            accessToken: accessToken,
           };
           return done(null, sanitize_user); // 검증 성공
           // console.log(user[0]);
@@ -58,6 +59,7 @@ module.exports = () => {
             authority: new_user.authority,
             name: new_user.name,
             email: new_user.email,
+            accessToken: accessToken,
           };
           return done(null, sanitize_user); // 임의 에러 처리
         }

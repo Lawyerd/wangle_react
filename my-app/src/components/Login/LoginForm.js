@@ -80,6 +80,9 @@ function LoginForm() {
           <div>
             <a href={base_url + "/auth/kakao"}>
               <img
+                // onClick={() =>
+                // window.open(base_url + "/auth/kakao", "", "_blank")
+                // }
                 style={{ height: "40px" }}
                 src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
                 alt="kakao_login"
