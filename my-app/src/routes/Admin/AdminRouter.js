@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
 import Navigation from "../../components/Navigation.js";
 import User from "./User/User.js";
-import DashBoard from "./Admin_dashboard.js";
+import Index from "./AdminIndex.js";
 
 function Admin({ match }) {
   const navigation_list = [
@@ -27,7 +27,7 @@ function Admin({ match }) {
       <Col md={8}>
         <Container>
           <Switch>
-            <Route exact path={`${match.path}`} component={DashBoard} />
+            <Route exact path={`${match.path}`} component={Index} />
             <Route path={`${match.path}/user`} component={User} />
           </Switch>
         </Container>

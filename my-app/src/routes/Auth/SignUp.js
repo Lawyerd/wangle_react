@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
-import "../css/Create.css";
+import "../../css/Create.css";
 import axios from "axios";
-import validate from "../lib/validate.js";
-import isEmpty from "../lib/empty.js";
-import InputSet from "../components/InputSet.js";
-import SelectSet from "../components/SelectSet.js";
-import base_url from "../data/base_url.js";
+import validate from "../../lib/validate.js";
+import isEmpty from "../../lib/empty.js";
+import InputSet from "../../components/InputSet.js";
+import SelectSet from "../../components/SelectSet.js";
+import base_url from "../../data/base_url.js";
 import { Row, Col } from "react-bootstrap";
 
 function User_create() {
