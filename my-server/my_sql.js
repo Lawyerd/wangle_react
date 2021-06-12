@@ -12,9 +12,10 @@ const connection = mysql.createConnection({
   database: "new_schema",
 });
 const query = util.promisify(connection.query).bind(connection);
-var my_sql = {};
+const user = {};
+const post = {};
 
-my_sql.get_data = async function (user_id) {
+user.find_by_id = async function (user_id) {
   let rows = [];
   try {
     rows = await query(`select * from user  where id = ${user_id}`);
@@ -29,7 +30,7 @@ my_sql.get_data = async function (user_id) {
   }
 };
 
-my_sql.get_all = async function () {
+user.get_all = async function () {
   console.log("Getting all data...");
   let rows = [];
   try {
@@ -42,7 +43,7 @@ my_sql.get_all = async function () {
   }
 };
 
-my_sql.create = async function (data) {
+user.create = async function (data) {
   hasher({ password: data.password }, async (error, pw, salt, hash) => {
     if (error) {
       console.log(error);
@@ -58,7 +59,7 @@ my_sql.create = async function (data) {
   });
 };
 
-my_sql.update = async function (data) {
+user.update = async function (data) {
   const id = data.id;
   delete data["id"];
   hasher({ password: data.password }, async (error, pw, salt, hash) => {
@@ -79,7 +80,7 @@ my_sql.update = async function (data) {
   });
 };
 
-my_sql.remove = async function (data) {
+user.remove = async function (data) {
   const id = data.id;
   try {
     await connection.query(`Delete From user Where id = ${id}`);
@@ -90,7 +91,7 @@ my_sql.remove = async function (data) {
   }
 };
 
-my_sql.email = async function (email) {
+user.find_by_email = async function (email) {
   try {
     console.log(`Searching Whose email = '${email}' from user DB`);
     // console.log(target_user);
@@ -103,4 +104,65 @@ my_sql.email = async function (email) {
   }
 };
 
-exports.my_sql = my_sql;
+post.create = async function (data) {
+  console.log("trying to create new post");
+  // try {
+  //   await connection.query("Insert Into post Set ?", data);
+  //   console.log(`Create new post : ${data.id} in user DB`);
+  // } catch (e) {}
+};
+
+post.find_by_id = async function (post_id) {
+  console.log("find_by_id");
+  const selected_post = {
+    id: 1823,
+    title: "First Post",
+    writer: "Lawyerd",
+    reporting_time: "2021-06-11",
+    description: "<h1>New Title</h1>\n",
+    views: 110,
+    likes: 10,
+  };
+
+  let rows = [];
+  // try {
+  //   rows = await query(`select * from post where id = ${post_id}`);
+  //   console.log(`Find ${post_id}'st post from user DB`);
+  //   console.log(rows);
+  //   return rows;
+  //   // connection.end();
+  //   // console.log(rows);
+  // } catch (err) {
+  //   console.log(err);
+  //   return undefined;
+  // }
+  return selected_post;
+};
+
+post.get_all = async function () {
+  console.log("get_all");
+  const selected_posts = [
+    {
+      id: 1823,
+      title: "First Post",
+      writer: "Lawyerd",
+      reporting_time: "2021-06-11",
+      description: "<h1>New Title</h1>\n",
+      views: 110,
+      likes: 10,
+    },
+    {
+      id: 1825,
+      title: "Second Post",
+      writer: "MinGyeong",
+      reporting_time: "2021-06-11",
+      description: "<h1>New Title</h1>\n",
+      views: 110,
+      likes: 10,
+    },
+  ];
+  return selected_posts;
+};
+
+exports.db_user = user;
+exports.db_post = post;

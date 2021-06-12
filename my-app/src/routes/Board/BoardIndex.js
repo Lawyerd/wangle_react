@@ -11,6 +11,7 @@ import base_url from "../../data/base_url.js";
 
 function Board() {
   //   const [isLoading, setIsLoading] = useState(true);
+  const [postID, setPostID] = useState(0);
   const columns = [
     // { name: "no", header: "ID" },
     { name: "title", header: "Name" },
@@ -21,7 +22,7 @@ function Board() {
   ];
   const posts = [
     {
-      no: 1,
+      id: 1823,
       title: "First Post",
       writer: "Lawyerd",
       reporting_time: "2021-06-11",
@@ -30,6 +31,22 @@ function Board() {
     },
   ];
 
+  const handleClick = e => {
+    // const clicked_cell = e.nativeEvent.target.innerText;
+    const row_number = e.rowKey;
+    // console.log(clicked_cell);
+    // console.log(row_number);
+    // console.log(e);
+    if (row_number !== undefined) {
+      console.log(row_number);
+      console.log(posts[row_number]);
+      setPostID(posts[row_number].id);
+      // setNext(users[row_number].id);
+    }
+  };
+  if (postID > 0) {
+    return <Redirect to={"/board/post/" + postID} />;
+  }
   return (
     <Card>
       <Card.Body>
@@ -40,7 +57,7 @@ function Board() {
         >
           <ButtonGroup size="sm">
             <Button variant="dark">
-              <Link to="/board/write">Write</Link>
+              <Link to="/board/post/write">Write</Link>
             </Button>
             {/* <Button variant="dark">Delete</Button> */}
           </ButtonGroup>
@@ -52,6 +69,7 @@ function Board() {
           bodyHeight={100}
           virtualScrolling={true}
           heightResizable={true}
+          onClick={handleClick}
           rowHeaders={["rowNum"]}
           pageOptions={{
             useClient: true,

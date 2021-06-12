@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var container = require("../my_sql.js");
-var mysql = container.my_sql;
+const { db_user } = require("../my_sql.js");
 
 router.post("/create", create_user);
 router.post("/update/:pageID", update_user);
@@ -10,19 +9,19 @@ router.get("/all", pages);
 router.get("/:pageID", page);
 
 async function create_user(req, res) {
-  await mysql.create(req.body);
+  await db_user.create(req.body);
 }
 
 async function update_user(req, res) {
-  await mysql.update(req.body);
+  await db_user.update(req.body);
 }
 
 async function delete_user(req, res) {
-  await mysql.remove(req.body);
+  await db_user.remove(req.body);
 }
 
 async function pages(req, res, next) {
-  var pages = await mysql.get_all();
+  var pages = await db_user.get_all();
   res.send(pages);
 }
 
@@ -30,7 +29,7 @@ async function page(req, res, next) {
   const user_id = req.params.pageID;
   console.log(user_id);
   if (user_id !== "favicon.ico") {
-    const user = await mysql.get_data(user_id);
+    const user = await db_user.find_by_id(user_id);
     if (isEmptyArr(user)) {
       res.redirect("/");
     } else {

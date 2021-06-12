@@ -1,7 +1,6 @@
 const passport = require("passport");
 var KakaoStrategy = require("passport-kakao").Strategy;
-var container = require("../my_sql.js");
-var mysql = container.my_sql;
+const { db_user } = require("../my_sql.js");
 var isEmptyArr = require("../util/isEmtyArr");
 
 module.exports = () => {
@@ -14,7 +13,7 @@ module.exports = () => {
       },
       async (accessToken, refreshToken, profile, done) => {
         const profile_email = profile._json.kakao_account.email;
-        const user = await mysql.email(profile_email);
+        const user = await db_user.find_by_email(profile_email);
         // console.log(user);
         if (!isEmptyArr(user)) {
           const sanitize_user = {
@@ -53,7 +52,7 @@ module.exports = () => {
             authority: "user_kakao",
           };
           console.log(new_user);
-          await mysql.create(new_user);
+          await db_user.create(new_user);
           const sanitize_user = {
             id: new_user.id,
             authority: new_user.authority,

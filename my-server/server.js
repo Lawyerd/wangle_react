@@ -8,6 +8,8 @@ const kakaoConfig = require("./passport/kakao_login"); // passport/index.js
 
 var login_router = require("./router/login");
 var user_router = require("./router/user");
+var post_router = require("./router/post");
+
 const cors_options = {
   origin: "http://localhost:3000", // 접근 권한을 부여하는 도메인
   credentials: true, // 응답 헤더에 Access-Control-Allow-Credentials 추가
@@ -37,6 +39,7 @@ kakaoConfig();
 
 app.use("/auth", login_router);
 app.use("/user", user_router);
+app.use("/post", post_router);
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);

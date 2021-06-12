@@ -4,6 +4,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import Navigation from "../../components/Navigation.js";
 import Index from "./BoardIndex.js";
 import Write from "./BoardWrite";
+import View from "./BoardView";
 
 function Admin({ match }) {
   // const navigation_list = [
@@ -27,7 +28,8 @@ function Admin({ match }) {
       <Col md={10}>
         <Switch>
           <Route exact path={`${match.path}`} component={Index} />
-          <Route exact path={`${match.path}/write`} component={Write} />
+          <Route exact path={`${match.path}/post/write`} component={Write} />
+          <Route exact path={`${match.path}/post/:id`} component={View} />
 
           {/* <Route path={`${match.path}/create`} component={User} /> */}
         </Switch>

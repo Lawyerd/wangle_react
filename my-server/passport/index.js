@@ -1,7 +1,6 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-var container = require("../my_sql.js");
-var mysql = container.my_sql;
+const { db_user } = require("../my_sql.js");
 const pbkdf2Password = require("pbkdf2-password");
 const hasher = pbkdf2Password();
 var isEmptyArr = require("../util/isEmtyArr");
@@ -27,7 +26,7 @@ module.exports = () => {
         passReqToCallback: false,
       },
       async (email, password, done) => {
-        const user = await mysql.email(email);
+        const user = await db_user.find_by_email(email);
         console.log(user);
         if (!isEmptyArr(user)) {
           console.log(user[0]);
